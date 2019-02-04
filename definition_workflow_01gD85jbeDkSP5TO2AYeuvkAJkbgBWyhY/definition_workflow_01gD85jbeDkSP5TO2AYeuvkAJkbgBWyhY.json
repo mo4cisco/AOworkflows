@@ -106,7 +106,7 @@
               {
                 "operator": "eq",
                 "left_operand": "$targetgroup.target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I.common.display_name$",
-                "right_operand": "$workflow.01gQva7JomQ9sYz5j8DGZfDsJhqAXccen.input.variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI$"
+                "right_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI$"
               }
             ]
           }
