@@ -1,0 +1,80 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014WNRZXM2YO142IVvwEioYBS9hafZhEKDt",
+    "name": "input fields issue",
+    "title": "input fields issue",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "input fields issue",
+      "favorite": false,
+      "target": {
+        "target_type": "ccsuite.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014WNVB784DE22UKrbjD3khwsW6Xgnv0qPb",
+        "name": "Execute Action on Virtual Machine",
+        "title": "Execute Action on Virtual Machine",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Execute Action on Virtual Machine",
+          "input": {
+            "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92": "external",
+            "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf": "null",
+            "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq": 10,
+            "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6": 30,
+            "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD": "null",
+            "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv": "ls",
+            "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI": "Suite Internal Target"
+          },
+          "target": {
+            "execute_on_this_target_group": true,
+            "target_group_id": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I"
+          },
+          "workflow_id": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "target_groups": {
+    "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I": {
+      "unique_name": "target_group_01grjYGXnAlH7hYFqQwJCEPBTKItsKq0I",
+      "name": "CCS Target Group",
+      "title": "CCS Target Group",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "ccsuite.endpoint",
+          "view_target_type": "ccsuite.endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "ccsuite.integration_endpoint",
+          "view_target_type": "ccsuite.integration_endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY"
+  ]
+}
