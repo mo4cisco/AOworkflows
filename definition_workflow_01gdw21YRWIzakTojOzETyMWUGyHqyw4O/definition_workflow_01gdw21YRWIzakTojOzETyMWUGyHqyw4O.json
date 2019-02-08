@@ -1,0 +1,392 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gdw21YRWIzakTojOzETyMWUGyHqyw4O",
+    "name": "Ramya GCP tests",
+    "title": "Ramya GCP tests",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "string",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gE7dNqjGwfhtZzXORHdqa2TSvUwUG4R",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "longhorn-186314",
+          "scope": "local",
+          "name": "project ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gdwuxLBlRFjPkPXWlic1xlwp8IsJlWT",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Ramya GCP tests",
+      "favorite": false,
+      "target": {
+        "target_type": "gcp.endpoint",
+        "target_id": "definition_target_01gdw1GdPEvdly1oQ9cjWdx0f5wzB5cLl",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gt9npW33WeLxPrURV9oYFf1ENBRewn2",
+        "name": "List Zones",
+        "title": "List Zones",
+        "type": "gcp.list_zones",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "List Zones",
+          "project_id": "longhorn-186314",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gtePmQCCopP2q9A84P4YEDS9n8eft6v",
+        "name": "List MachineTypes",
+        "title": "List MachineTypes",
+        "type": "gcp.list_machinetypes",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "List MachineTypes",
+          "project_id": "longhorn-186314",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "zone_name": "$activity.definition_activity_01gt9npW33WeLxPrURV9oYFf1ENBRewn2.output.zones[0].name$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gxvBW4XA80gWb5JTb1qAXZieaThCPHZ",
+        "name": "Create Project",
+        "title": "Create Project",
+        "type": "gcp.create_project",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Project",
+          "name": "longhorn-10",
+          "projectId": "longhorn-10",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gxN0u5a75NTzncWATy6pTX6zneU2Jll",
+        "name": "Succeeded",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Succeeded"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gt9OPHbk4yCA3vGkJymSsxLNaBObTG8",
+        "name": "List Instance Templates",
+        "title": "List Instance Templates",
+        "type": "gcp.list_instance_templates",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "List Instance Templates",
+          "project_id": " longhorn-186314 ",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gQ6Syj4VbYeXGHPz6HjBAs6oCC1K02C",
+        "name": "List Zones",
+        "title": "List Zones",
+        "type": "gcp.list_zones",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "List Zones",
+          "project_id": "$workflow.definition_workflow_01gdw21YRWIzakTojOzETyMWUGyHqyw4O.local.variable_workflow_01gdwuxLBlRFjPkPXWlic1xlwp8IsJlWT$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gdw3KX6u84Lt656JSjD49HPfYjaFCgc",
+        "name": "List Zones",
+        "title": "List Zones",
+        "type": "gcp.list_zones",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "List Zones",
+          "project_id": "longhorn-186314",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gItKXDeSc26ygZIdN7vUO93xYBin76f",
+        "name": "Create Project",
+        "title": "Create Project",
+        "type": "gcp.create_project",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "Create Project",
+          "name": "longhorn-186314-test",
+          "projectId": "501931960862721454",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gdw6ojnPXDkyM5kqV4dhlszG1BCX7zh",
+        "name": "Get Instance Details",
+        "title": "Get Instance Details",
+        "type": "gcp.get_instance_details",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Instance Details",
+          "instance_name": "$activity.definition_activity_01gt9OPHbk4yCA3vGkJymSsxLNaBObTG8.output.instance_templates[0].id$",
+          "project_id": "",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "zone_name": "$activity.definition_activity_01gt9npW33WeLxPrURV9oYFf1ENBRewn2.output.zones[0].id$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gFmWQluM1zDZ8EqSCNChW7br5QAVIWk",
+        "name": "Delete Instance",
+        "title": "Delete Instance",
+        "type": "gcp.delete_instance",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Delete Instance",
+          "instance_name": "$activity.01gdw7c9BzLacIDXqyJKjDY7THD9swwXq.output.instances[-1].name$",
+          "project_id": "$workflow.definition_workflow_01gdw21YRWIzakTojOzETyMWUGyHqyw4O.local.variable_workflow_01gdwuxLBlRFjPkPXWlic1xlwp8IsJlWT$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "zone_name": "$activity.definition_activity_01gdw3KX6u84Lt656JSjD49HPfYjaFCgc.output.zones[0].name$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gFLirm0Cj2JHLy9Iu7Vm7IDLfjIRyah",
+        "name": "Create Instance",
+        "title": "Create Instance",
+        "type": "gcp.create_instance",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Instance",
+          "machine_type": "n1-highmem-8",
+          "name": "ramya22",
+          "project_id": "$workflow.definition_workflow_01gdw21YRWIzakTojOzETyMWUGyHqyw4O.local.variable_workflow_01gdwuxLBlRFjPkPXWlic1xlwp8IsJlWT$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "source_instance_template": "$activity.01gE1MYsmpScRf9XtYGxreAsmD2m1cObX.output.instance_templates[0].name$",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "zone_name": "$activity.definition_activity_01gdw3KX6u84Lt656JSjD49HPfYjaFCgc.output.zones[0].name$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gE2saNDqmHsEZL89JGOMhRspFESWucc",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gdw21YRWIzakTojOzETyMWUGyHqyw4O.local.variable_workflow_01gE7dNqjGwfhtZzXORHdqa2TSvUwUG4R$",
+              "variable_value_new": "$activity.01gE1MYsmpScRf9XtYGxreAsmD2m1cObX.output.instance_templates[0].id$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gE7MCRB3j6NlaD3yqQY88AWHK58LV1J",
+        "name": "Read Table from JSON",
+        "title": "Read Table from JSON",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Table from JSON",
+          "input_json": "$activity.definition_activity_01gdw6ojnPXDkyM5kqV4dhlszG1BCX7zh.output.response_body$",
+          "jsonpath_query": "*.items[*]",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "key",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "value",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01gdw1GdPEvdly1oQ9cjWdx0f5wzB5cLl": {
+      "unique_name": "definition_target_01gdw1GdPEvdly1oQ9cjWdx0f5wzB5cLl",
+      "name": "Ramya GCP target",
+      "title": "Ramya GCP target",
+      "type": "gcp.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01gdWyFfPA8hMrn6sbn0doCgbBet8qvRz",
+        "display_name": "Ramya GCP target",
+        "host": "www.googleapis.com",
+        "protocol": "https",
+        "scope": "/auth/cloud-platform"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01gdWyFfPA8hMrn6sbn0doCgbBet8qvRz": {
+      "unique_name": "definition_runtime_user_01gdWyFfPA8hMrn6sbn0doCgbBet8qvRz",
+      "name": "RG GCP user",
+      "title": "RG GCP user",
+      "type": "runtime_user.gcp_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "RG GCP user"
+      }
+    }
+  }
+}
