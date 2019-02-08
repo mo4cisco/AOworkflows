@@ -1,0 +1,116 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014UPS5ZKOC5R2qA2ugCqRqI2594zYzqPzt",
+    "name": "Kubernetes - Access Token",
+    "title": "Kubernetes - Access Token",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Get Token Command",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014UPV4JOA2YG54SNFQuY3pFCBi4buWvy66",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Kubernetes - Access Token",
+      "favorite": false,
+      "target": {
+        "target_type": "terminal.unix_linux_endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014UPSLZ3HHC12wP8b76gdgsplPX8VCc8KI",
+        "name": "Execute Linux/Unix SSH Command",
+        "title": "Get Service Secret Name",
+        "type": "terminal.ssh_command",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "command": "x=$(kubectl get serviceaccount api-service-account  -o json | jq -Mr '.secrets[].name');echo $x |  sed ':a;N;$!ba;s/\\r\\n//g'",
+          "command_timeout": 60,
+          "continue_on_failure": false,
+          "display_name": "Get Service Secret Name",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014UR17LAR1N81NYOXan80MrIiDHpMi6ZwL",
+        "name": "Replace String",
+        "title": "Replace String",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Replace String",
+          "input_string": "$activity.definition_activity_014UPSLZ3HHC12wP8b76gdgsplPX8VCc8KI.output.response_body$",
+          "replace_list": [
+            {
+              "replaced_string": "\\r",
+              "replacement_string": ""
+            },
+            {
+              "replaced_string": "\\n",
+              "replacement_string": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014UPXY7K8ICA2iOOP8iHdtbmZHagvudUMo",
+        "name": "Execute Linux/Unix SSH Command",
+        "title": "Get Token",
+        "type": "terminal.ssh_command",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "command": "kubectl get secrets $activity.definition_activity_014UR17LAR1N81NYOXan80MrIiDHpMi6ZwL.output.result_string$ -o json | jq -Mr '.data.token' | base64 -d",
+          "command_timeout": 60,
+          "continue_on_failure": false,
+          "display_name": "Get Token",
+          "failed_completed": [
+            ""
+          ],
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
