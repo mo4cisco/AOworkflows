@@ -1,0 +1,357 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014WSPX82JCIO4LBogbRemYPV9djD6HYk3U",
+    "name": "AWS-create-instance",
+    "title": "AWS-create-instance",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "AWS-create-instance",
+      "favorite": false,
+      "target": {
+        "target_type": "aws.endpoint",
+        "target_id": "definition_target_014WSXUWRO4P117jtOUvYIGvdD3KQllEsHF",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014WSQG0R9U0D64k4nOAwdgjNyb5wldWFBh",
+        "name": "Create VPC",
+        "title": "Create VPC",
+        "type": "aws.create_vpc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "amazon_provided_ipv6_cidr_block": false,
+          "cidr_block": "172.31.8.0/20",
+          "continue_on_failure": false,
+          "display_name": "Create VPC",
+          "name_tag": "nds-vpc",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WYL5MMKLF12JmGR4Gns6XmB4mIdVFcIQ",
+        "name": "Create Subnet in a VPC",
+        "title": "Create Subnet in a VPC",
+        "type": "aws.create_subnet_vpc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "availability_zone": "us-west-2a",
+          "cidr_block": "172.31.8.0/20",
+          "continue_on_failure": false,
+          "display_name": "Create Subnet in a VPC",
+          "name_tag": "nds-subnet",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "vpc_id": "$activity.definition_activity_014WSQG0R9U0D64k4nOAwdgjNyb5wldWFBh.output.vpc_id$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WYPWGBWAJM6JH4sHbruDBqKfRFz7esfK",
+        "name": "Create Route Table",
+        "title": "Create Route Table",
+        "type": "aws.create_route_table",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Route Table",
+          "name_tag": "nds-rt",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "vpc_id": "$activity.definition_activity_014WSQG0R9U0D64k4nOAwdgjNyb5wldWFBh.output.vpc_id$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WYQEJ7OP954iey54u4uLUYEFlsySMfRL",
+        "name": "Create Internet Gateway",
+        "title": "Create Internet Gateway",
+        "type": "aws.create_internet_gateway",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Internet Gateway",
+          "name_tag": "ig-nds",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WYUJGM2FFK4C0TgVjSmuVWWxusbW4qLu",
+        "name": "Attach Internet Gateway",
+        "title": "Attach Internet Gateway",
+        "type": "aws.attach_internet_gateway",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Attach Internet Gateway",
+          "internet_gateway_id": "$activity.definition_activity_014WYQEJ7OP954iey54u4uLUYEFlsySMfRL.output.internet_gateway_id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "vpc_id": "$activity.definition_activity_014WSQG0R9U0D64k4nOAwdgjNyb5wldWFBh.output.vpc_id$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WYQ01OE9AI0uwDBabHnkHDdhLQrwdKb7",
+        "name": "Create Route",
+        "title": "Create Route",
+        "type": "aws.create_route",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "destination_cidr_block": "0.0.0.0/0",
+          "display_name": "Create Route",
+          "gateway_id": "$activity.definition_activity_014WYQEJ7OP954iey54u4uLUYEFlsySMfRL.output.internet_gateway_id$",
+          "route_table_id": "$activity.definition_activity_014WYPWGBWAJM6JH4sHbruDBqKfRFz7esfK.output.route_table_id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WYOYREDE0B0g6aHtNJjGJLZtXJCxuBZ9",
+        "name": "Associate Subnet with Route Table",
+        "title": "Associate Subnet",
+        "type": "aws.associate_subnet_with_route_table",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Associate Subnet",
+          "route_table_id": "$activity.definition_activity_014WYPWGBWAJM6JH4sHbruDBqKfRFz7esfK.output.route_table_id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "subnet_id": "$activity.definition_activity_014WYL5MMKLF12JmGR4Gns6XmB4mIdVFcIQ.output.subnet_id$",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WSQTAFZENH31WYqLRV7pZfihnFXMLhTX",
+        "name": "Create Security Group",
+        "title": "Create Security Group",
+        "type": "aws.create_security_group",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Security Group",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "security_group_description": "test workflow",
+          "security_group_name": "nds-secgroup1",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "vpc_id": "$activity.definition_activity_014WSQG0R9U0D64k4nOAwdgjNyb5wldWFBh.output.vpc_id$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WSQUL9TJ0H7jP1UX9zA6HRzkS2TNDgnv",
+        "name": "Create Security Group Rule",
+        "title": "Create Security Group Rule",
+        "type": "aws.authorize_security_group",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Security Group Rule",
+          "ip_permissions_egress": [
+            {
+              "cidr_block_ip_v4": "0.0.0.0/8",
+              "from_port": 0,
+              "ip_protocol": "tcp",
+              "to_port": 65535
+            }
+          ],
+          "ip_permissions_ingress": [
+            {
+              "cidr_block_ip_v4": "0.0.0.0/8",
+              "from_port": 0,
+              "ip_protocol": "tcp",
+              "to_port": 80
+            }
+          ],
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "security_group_id": "$activity.definition_activity_014WSQTAFZENH31WYqLRV7pZfihnFXMLhTX.output.security_group_id$",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WSU88EXO534bNPgUmgSyPFbjE8ZvTqTX",
+        "name": "Create Keypair",
+        "title": "Create Keypair",
+        "type": "aws.create_keypair",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create Keypair",
+          "keypair_name": "nds-key1",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014WSR3HWKEF07BLwsTXxIfMUbYxtRyFB01",
+        "name": "Create EC2 Instances",
+        "title": "Create EC2 Instances",
+        "type": "aws.create_ec2",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "auto_public_ip_address_option": "enable",
+          "continue_on_failure": false,
+          "display_name": "Create EC2 Instances",
+          "image_id": "ami-036affea69a1101c9",
+          "instance_type": "t2.micro",
+          "keypair_name": "$activity.definition_activity_014WSU88EXO534bNPgUmgSyPFbjE8ZvTqTX.output.keypair_name$",
+          "max_count": 1,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "sec_group_ids": [
+            "$activity.definition_activity_014WSQTAFZENH31WYqLRV7pZfihnFXMLhTX.output.security_group_id$"
+          ],
+          "subnet_id": "$activity.definition_activity_014WYL5MMKLF12JmGR4Gns6XmB4mIdVFcIQ.output.subnet_id$",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_014WSXUWRO4P117jtOUvYIGvdD3KQllEsHF": {
+      "unique_name": "definition_target_014WSXUWRO4P117jtOUvYIGvdD3KQllEsHF",
+      "name": "aws-nds-tar",
+      "title": "aws-nds-tar",
+      "type": "aws.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_014WSVYUWZQM44qvoSuAGs2pCKcXKFfm3Kh",
+        "display_name": "aws-nds-tar",
+        "region": "us-west-2"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_014WSVYUWZQM44qvoSuAGs2pCKcXKFfm3Kh": {
+      "unique_name": "definition_runtime_user_014WSVYUWZQM44qvoSuAGs2pCKcXKFfm3Kh",
+      "name": "nds-aws-user",
+      "title": "nds-aws-user",
+      "type": "runtime_user.aws_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "nds-aws-user"
+      }
+    }
+  }
+}
