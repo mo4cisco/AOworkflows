@@ -1,0 +1,248 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GQYkDyBH3LJ6pFwe7n6kHQgOP9Y3JEE",
+    "name": "Ramya - Generic CCS tests",
+    "title": "Ramya - Generic CCS tests",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01g1JoKOU1D2JOkgPpEka6XtgCDjkuV0k",
+        "properties": {
+          "scope": "output",
+          "name": "RG output table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01g5DyhzbTA6ywbZuQXZd3s7aSZXaDW9r",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Ramya - Generic CCS tests",
+      "favorite": false,
+      "target": {
+        "target_type": "ccsuite.integration_endpoint",
+        "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01Gq5jQq1wjNIxr4NuZ9mI0MSoLTC3ibx",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request - GET with parameters",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": true,
+          "display_name": "Generic CCS API Request - GET with parameters",
+          "relative_url": "/cloudcenter-cloud-setup/api/v1/tenants/1/clouds/1?detail=true",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GQYL2DSkLtIPkwZrmjufNH0eekP7dTu",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request - GET",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request - GET",
+          "relative_url": "/cloudcenter-ccm-backend/api/app/service/get_my_apps",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01Gq3OCGRhw9NP4eJN4elZ2C8PgNRMqun",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request - POST",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"displayName\": \"API AWS222\",\n  \"accountDescription\": \"\",\n  \"enableAccountFor\": \"PROVISIONING_REPORTING\",\n  \"userId\": 3,\n  \"cloudId\": \"1\",\n  \"allowedUsers\": [],\n  \"enableReportingByOrg\": false,\n  \"accountName\": \"ramygane@cisco.com\",\n  \"accountProperties\": [\n    {\n      \"name\": \"IAMRoleEnable\",\n      \"value\": false\n    },\n    {\n      \"name\": \"AccessSecretKey\",\n      \"value\": \"A8z64GJKgbVdtdc8S2+FJS4bRXJ4IvVNtu839sPf\"\n    },\n    {\n      \"name\": \"billingBucketRegion\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"billingBucketName\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"billingReportPathPrefix\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"EC2ARN\",\n      \"value\": \"\"\n    }\n  ],\n  \"accountId\": \"290792058377\",\n  \"accountPassword\": \"AKIAID3C66CMTDVHK3LQ\"\n}",
+          "api_call_method": "POST",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request - POST",
+          "relative_url": "/cloudcenter-cloud-setup/api/v1/tenants/1/clouds/1/accounts",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GqdCGK2AOVDVBbLqplnoJLh2vnU70kO",
+        "name": "Read Table from JSON",
+        "title": "Read Table from JSON",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Table from JSON",
+          "input_json": "$activity.definition_activity_01Gq3OCGRhw9NP4eJN4elZ2C8PgNRMqun.output.response_body$",
+          "jsonpath_query": "$.approvalRequestStatus",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "approvalRequestStatus",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GqczAiwyfp37EQvqEYMcfOdsFJRxliw",
+        "name": "Convert Json to Xml",
+        "title": "Convert Json to Xml",
+        "type": "core.json2xml",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Convert Json to Xml",
+          "input_json": "$activity.definition_activity_01GQYL2DSkLtIPkwZrmjufNH0eekP7dTu.output.response_body$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01Gq7c7L7rddC35xqC21Vvh7kGIplNX9Y",
+        "name": "Succeeded",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Succeeded"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01Gq4n2X8MD1VfS0TzmhvxGS4U4uTcZ9F",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request - POST",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"displayName\": \"RG AWS2\",\n  \"accountDescription\": \"test PUT API\",\n  \"enableAccountFor\": \"PROVISIONING_REPORTING\",\n  \"userId\": 3,\n  \"cloudId\": \"1\",\n  \"allowedUsers\": [],\n  \"enableReportingByOrg\": false,\n  \"id\": \"2\",\n  \"accountName\": \"ramygane@cisco.com\",\n  \"accountProperties\": [\n    {\n      \"name\": \"brokerVirtualHost\",\n      \"value\": \"1-cloudendpointf09236\"\n    },\n    {\n      \"name\": \"RegionEndPoint\",\n      \"value\": \"ec2.us-west-2.amazonaws.com\"\n    },\n    {\n      \"name\": \"bladeIp\",\n      \"value\": \"cloudcenter-blade-amazon-1-8528\"\n    },\n    {\n      \"name\": \"bladePort\",\n      \"value\": \"8443\"\n    },\n    {\n      \"name\": \"IAMRoleEnable\",\n      \"value\": false\n    },\n    {\n      \"name\": \"AccessSecretKey\",\n      \"value\": \"A8z64GJKgbVdtdc8S2+FJS4bRXJ4IvVNtu839sPf\"\n    },\n    {\n      \"name\": \"billingBucketRegion\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"billingBucketName\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"billingReportPathPrefix\",\n      \"value\": \"\"\n    },\n    {\n      \"name\": \"EC2ARN\",\n      \"value\": \"\"\n    }\n  ],\n  \"accountId\": \"290792058377\",\n  \"accountPassword\": \"AKIAID3C66CMTDVHK3LQ\"\n}",
+          "api_call_method": "POST",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request - POST",
+          "relative_url": "/cloudcenter-cloud-setup/api/v1/tenants/1/clouds/1/accounts/2/update",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01Gq56wd9jsEoZPlTmpSjRd0ZmtVkgm1S",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request - DELETE",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "DELETE",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request - DELETE",
+          "relative_url": "/cloudcenter-cloud-setup/api/v1/tenants/1/clouds/1/accounts/9",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01g1JoKOU1D2JOkgPpEka6XtgCDjkuV0k": {
+      "unique_name": "tabletype_01g1JoKOU1D2JOkgPpEka6XtgCDjkuV0k",
+      "data_type": "datatype.tabletype",
+      "display_name": "RG table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Dec",
+          "title": "number",
+          "type": "number"
+        },
+        {
+          "is_required": true,
+          "name": "number",
+          "title": "number",
+          "type": "integer"
+        },
+        {
+          "is_required": true,
+          "name": "string",
+          "title": "string",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
