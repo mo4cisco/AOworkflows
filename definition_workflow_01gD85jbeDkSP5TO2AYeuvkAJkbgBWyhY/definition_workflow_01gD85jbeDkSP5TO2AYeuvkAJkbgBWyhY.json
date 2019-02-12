@@ -11,6 +11,39 @@
         "properties": {
           "value": "",
           "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Suite Internal Target",
+          "scope": "input",
+          "name": "Target Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "CC_RUN_ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
           "name": "Script",
           "type": "datatype.string"
         },
@@ -58,39 +91,6 @@
           "type": "datatype.integer"
         },
         "unique_name": "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "Action Type",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "Suite Internal Target",
-          "scope": "input",
-          "name": "Target Name",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "null",
-          "scope": "input",
-          "name": "CC_RUN_ID",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD",
         "object_type": "variable_workflow"
       }
     ],
@@ -511,7 +511,7 @@
                       {
                         "unique_name": "definition_activity_01gmtLJjE4upV8uqPUd17bdSEjJZMSKat",
                         "name": "Condition Branch",
-                        "title": "Status \u003c\u003e FAILED",
+                        "title": "Status \u003c\u003e FAILED and counter\u003e1",
                         "type": "logic.condition_block",
                         "base_type": "activity",
                         "properties": {
@@ -525,11 +525,11 @@
                             "right_operand": {
                               "left_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
                               "operator": "gt",
-                              "right_operand": 0
+                              "right_operand": 1
                             }
                           },
                           "continue_on_failure": false,
-                          "display_name": "Status \u003c\u003e FAILED"
+                          "display_name": "Status \u003c\u003e FAILED and counter\u003e1"
                         },
                         "object_type": "definition_activity",
                         "actions": [
@@ -561,6 +561,46 @@
                               "continue_on_failure": false,
                               "display_name": "Sleep",
                               "sleep_interval": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6$"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_0150KUJ8NVWNR13WrigdypY7LQxPpLtyoR2",
+                        "name": "Condition Branch",
+                        "title": "Status \u003c\u003e FAILED and Counter=1",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR.output.jsonpath_queries.status$",
+                              "operator": "ne",
+                              "right_operand": "FAILED"
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
+                              "operator": "eq",
+                              "right_operand": "1"
+                            }
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Status \u003c\u003e FAILED and Counter=1"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_0150L8A2WFWN50UljC0UMR8SfCFjxRD8ojN",
+                            "name": "Failed",
+                            "title": "Succeeded",
+                            "type": "logic.completed",
+                            "base_type": "activity",
+                            "properties": {
+                              "completion_type": "failed-completed",
+                              "display_name": "Failed",
+                              "result_message": "Unable to execute action on VM $activity.definition_activity_01gmInQYOkuC3decW8S0krmldTaPE1BRM.input.source_array[@].Id$ in time."
                             },
                             "object_type": "definition_activity"
                           }
