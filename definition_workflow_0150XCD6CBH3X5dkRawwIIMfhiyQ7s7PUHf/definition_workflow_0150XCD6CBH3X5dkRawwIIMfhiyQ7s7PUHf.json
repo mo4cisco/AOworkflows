@@ -1,0 +1,115 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150XCD6CBH3X5dkRawwIIMfhiyQ7s7PUHf",
+    "name": "Delete Tenants",
+    "title": "Delete Tenants",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Delete Tenants",
+      "favorite": true,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150XDBSK18B65i6k6Q9OcNB5oeZVTRic6O",
+        "name": "Generic CCS API Request",
+        "title": "Get All Tenants",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "Get All Tenants",
+          "relative_url": "/suite-idm/api/v1/tenants",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150XEAE1V2Z62nFZKabOvgtUEAGKzefWGY",
+        "name": "Read Table from JSON",
+        "title": "Get Tenant IDs",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Tenant IDs",
+          "input_json": "$activity.definition_activity_0150XDBSK18B65i6k6Q9OcNB5oeZVTRic6O.output.response_body$",
+          "jsonpath_query": "$.[*]",
+          "persist_output": true,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "integer",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150XFWUJ4I5F55foeKu8O9VOXaspxc2p5y",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_0150XEAE1V2Z62nFZKabOvgtUEAGKzefWGY.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0150XCRBICDT8688SXYpjxLy97tH5QTYBIn",
+            "name": "Generic CCS API Request",
+            "title": "Delete Tenants",
+            "type": "ccs.api_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "api_call_method": "DELETE",
+              "continue_on_failure": false,
+              "display_name": "Delete Tenants",
+              "relative_url": "/suite-idm/api/v1/tenants/$activity.definition_activity_0150XFWUJ4I5F55foeKu8O9VOXaspxc2p5y.input.source_array[@].id$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
