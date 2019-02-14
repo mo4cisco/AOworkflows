@@ -1,0 +1,70 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152M1XEMZH8B7RBwGyhEnT0B9lu72z8h4X",
+    "name": "Puppet Apply",
+    "title": "Puppet Apply",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Puppet Apply Command String",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0152M2IEASCH27KFypoJgbyvPZdqhsvbR0A",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "puppet",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Runs \"puppet apply\" with the exact command args you specify (see man pages for puppet apply).\n\nIf puppet is not installed on the target host, it will install it using the latest version, works across all different linux distributions using https://github.com/petems/puppet-install-shell script.\n\nCurrently the exit code of puppet is not respected by the call, as puppet uses non-standard exit codes for partial failures/successes.",
+      "display_name": "Puppet Apply",
+      "favorite": false,
+      "target": {
+        "target_type": "terminal.unix_linux_endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152M782AHAP51WVVPzbbEngfCf3RHL6UJ4",
+        "name": "Execute Linux/Unix SSH Script",
+        "title": "Execute Linux/Unix SSH Script",
+        "type": "terminal.ssh_script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "arguments": [
+            "",
+            "$workflow.definition_workflow_0152M1XEMZH8B7RBwGyhEnT0B9lu72z8h4X.input.variable_workflow_0152M2IEASCH27KFypoJgbyvPZdqhsvbR0A$"
+          ],
+          "continue_on_failure": true,
+          "display_name": "Execute Linux/Unix SSH Script",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "script": "if ! [ -x \"$(command -v puppet)\" ]; then\n   curl -O https://raw.githubusercontent.com/petems/puppet-install-shell/master/install_puppet_5_agent.sh\nchmod 755 ./install_puppet_5_agent.sh\nsudo ./install_puppet_5_agent.sh || exit 2\nsource ~/.bashrc\nfi\npuppet apply $1",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
