@@ -1,0 +1,55 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152KPM53BFG06Zr9wt8apWa2ZW8WWbJ7kI",
+    "name": "Test-Atomic",
+    "title": "Test-Atomic",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "atomic_group": "Testing",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Test-Atomic",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152KPT8DZ43Q03MYreFdCvtElh6k9laTzU",
+        "name": "To Upper",
+        "title": "To Upper",
+        "type": "core.string2upper",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "To Upper",
+          "source": "Hello"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa"
+    ]
+  },
+  "categories": {
+    "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa": {
+      "unique_name": "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa",
+      "name": "Other",
+      "title": "Other",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  }
+}
