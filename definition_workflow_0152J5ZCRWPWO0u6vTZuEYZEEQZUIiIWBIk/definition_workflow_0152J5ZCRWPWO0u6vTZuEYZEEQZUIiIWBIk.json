@@ -1,0 +1,140 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152J5ZCRWPWO0u6vTZuEYZEEQZUIiIWBIk",
+    "name": "Cisco Process Orchestrator Integration",
+    "title": "Cisco Process Orchestrator Integration",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "danlin2@cisco.com",
+          "scope": "input",
+          "name": "EmailRecipient",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0152LZ538J69G1xlhftPnXlGm8nlaCQY0bJ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Cisco Process Orchestrator Integration",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_0152JWGS9JWUJ4i0zlct3g4IttbYfHH4jGs",
+          "run_on_all_targets": true,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ]
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152KAHIAKI965NEklmH99YMAF4S097hMe5",
+        "name": "HTTP Request",
+        "title": "HTTP Request - Get Processes",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 90,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "HTTP Request - Get Processes",
+          "method": "Get",
+          "relative_url": "api/v1/Processes",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target_group": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152M8UWUZTZE4jn1iN51vtOSTNJ4gP2NS0",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Completed"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_0152K9T2XO5OO1UzqGzFHbFazdRD3dfaqXi": {
+      "unique_name": "definition_target_0152K9T2XO5OO1UzqGzFHbFazdRD3dfaqXi",
+      "name": "PO REST Target  - 01",
+      "title": "PO REST Target  - 01",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_0152K9DH61JBP6TMbCBpgdRjm6oNGKqtM3J",
+        "description": "PODEV-W2K12-01.tidalsoft.local\n10.201.127.10",
+        "disable_certificate_validation": true,
+        "display_name": "PO REST Target  - 01",
+        "host": "10.201.127.10",
+        "no_runtime_user": false,
+        "port": 51527,
+        "protocol": "http"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_0152K9DH61JBP6TMbCBpgdRjm6oNGKqtM3J": {
+      "unique_name": "definition_runtime_user_0152K9DH61JBP6TMbCBpgdRjm6oNGKqtM3J",
+      "name": "http tidalsoft - DL",
+      "title": "http tidalsoft - DL",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "description": "danlin2",
+        "display_name": "http tidalsoft - DL"
+      }
+    }
+  },
+  "target_groups": {
+    "target_group_0152JWGS9JWUJ4i0zlct3g4IttbYfHH4jGs": {
+      "unique_name": "target_group_0152JWGS9JWUJ4i0zlct3g4IttbYfHH4jGs",
+      "name": "Cisco process Orchestrator Targets",
+      "title": "Cisco process Orchestrator Targets",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": false,
+          "selected_target_ids": [
+            "definition_target_0152K9T2XO5OO1UzqGzFHbFazdRD3dfaqXi"
+          ]
+        }
+      ],
+      "object_type": "target_group"
+    }
+  }
+}
