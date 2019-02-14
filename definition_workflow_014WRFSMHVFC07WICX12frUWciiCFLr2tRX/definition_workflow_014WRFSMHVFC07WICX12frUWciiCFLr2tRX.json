@@ -1,0 +1,1107 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX",
+    "name": "All table actions testing",
+    "title": "All table actions testing",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_014WRWZBISCDK65pXKo0tcv63is6zo31VwA",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "EmpID": 1,
+                "EmpName": "Cicely"
+              }
+            }
+          ],
+          "scope": "static",
+          "name": "static-table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Hello World",
+          "scope": "local",
+          "name": "script_args",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01510C8KKFC6Q5AD6Iv76xaMxS2hv72VTVj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "local",
+          "name": "a+b",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_01510GGECPZ8K2qwr4M8uux5ZQMT1JMCEn5",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "input-int",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_014WRGZFCZ78A1s9yV1BIprBYKEdN7djZcC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_014WRWZBISCDK65pXKo0tcv63is6zo31VwA",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "EmpID": 1,
+                "EmpName": "1"
+              }
+            }
+          ],
+          "scope": "local",
+          "name": "local-table-2",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "All table actions testing",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014WRGBCQQKWW51PFjtQJAycKOyEsrj3MhX",
+        "name": "Condition Block",
+        "title": "Table testing",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "columns": [
+            {
+              "column_name": "EmpName",
+              "column_type": "string"
+            }
+          ],
+          "continue_on_failure": false,
+          "display_name": "Table testing",
+          "input_table": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$",
+          "row": [
+            {
+              "key": "EmpID",
+              "type": "integer",
+              "value": 3
+            },
+            {
+              "key": "EmpName",
+              "type": "string"
+            }
+          ],
+          "rows": {
+            "all_rows": true,
+            "rows_matching_criteria": false
+          }
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_014WRGBFRXXXZ3hH2gQLXvDw2czI1MBXLxG",
+            "name": "Condition Branch",
+            "title": "Local table testing",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.input.variable_workflow_014WRGZFCZ78A1s9yV1BIprBYKEdN7djZcC$",
+                "operator": "eq",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "Local table testing"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014WRJ5DW5SC428NGZUPPSwETmkQq6DgKAh",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WRJ7UWC4RC1vvyP4yfqw3d68cru3bJJJ",
+                "name": "Add Row to Table",
+                "title": "Add Row to Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Add Row to Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                  "row": [
+                    {
+                      "key": "EmpID",
+                      "type": "integer",
+                      "value": 3
+                    },
+                    {
+                      "key": "EmpName",
+                      "type": "string",
+                      "value": "3"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WSG4OV74XL2kTARxC7cM57JrbDXEMlJM",
+                "name": "Update Row in Table",
+                "title": "Update Row in Table",
+                "type": "core.updaterowintable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Update Row in Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                  "row": [
+                    {
+                      "key": "EmpID",
+                      "type": "integer",
+                      "value": 4
+                    },
+                    {
+                      "key": "EmpName",
+                      "type": "string",
+                      "value": "4"
+                    }
+                  ],
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "EmpName == '3'"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WRJC0C82XQ5p0mTFOAwwUuDvtfgLV6N8",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WRJF2ZOLJS6WBWCyQoUiCKkGZFc20hUk",
+                "name": "Delete from Table",
+                "title": "Delete from Table",
+                "type": "core.deleterowfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Delete from Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "EmpName == '4'"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WRJLAPBQV34E3DGVDnJ6nVh3ejZonPeH",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                      "variable_value_new": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014WRGBGV496M0FZycm0Kcb7ABuYdQlLVL8",
+            "name": "Condition Branch",
+            "title": "Static variable testing",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.input.variable_workflow_014WRGZFCZ78A1s9yV1BIprBYKEdN7djZcC$",
+                "operator": "eq",
+                "right_operand": 1
+              },
+              "continue_on_failure": false,
+              "display_name": "Static variable testing"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014WSO6YCOXJI0so8jQciis4rsTSFL2ypfG",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.static.variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WSP312FUN62cPbDtbiaR7nVDvG6mUzzG",
+                "name": "Add Row to Table",
+                "title": "Add Row to Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Add Row to Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.static.variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz$",
+                  "row": [
+                    {
+                      "key": "EmpID",
+                      "type": "integer",
+                      "value": 4
+                    },
+                    {
+                      "key": "EmpName",
+                      "type": "string",
+                      "value": "4"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WSSAVJLQSD1NOSVHZFk8aqs36FN5CSz7",
+                "name": "Update Row in Table",
+                "title": "Update Row in Table",
+                "type": "core.updaterowintable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Update Row in Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.static.variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz$",
+                  "row": [
+                    {
+                      "key": "EmpID",
+                      "type": "integer",
+                      "value": 3
+                    },
+                    {
+                      "key": "EmpName",
+                      "type": "string",
+                      "value": "3"
+                    }
+                  ],
+                  "rows": {
+                    "all_rows": true,
+                    "rows_matching_criteria": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WSVFKC8WG86Eu9bqq68cFcbSVhY6z0GR",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.static.variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": true,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WSVWUZWFFE2fPs8ulNDqroshNaVen8Vc",
+                "name": "Delete from Table",
+                "title": "Delete from Table",
+                "type": "core.deleterowfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Delete from Table",
+                  "input_table": "$activity.definition_activity_014WSVFKC8WG86Eu9bqq68cFcbSVhY6z0GR.output.output_table$",
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "EmpName=='4'"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WSWOX9O57Y5kMtnJZFOVrTRawNKUcXWv",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_014WRXK1H0CK97iK9UV6WYHxOuA2JyhQ5FN$",
+                      "variable_value_new": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.static.variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014WRGEBDQ9M733T4ZzcxKGZUcKzeELTrhA",
+            "name": "Condition Branch",
+            "title": "Global variable testing",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.input.variable_workflow_014WRGZFCZ78A1s9yV1BIprBYKEdN7djZcC$",
+                "operator": "eq",
+                "right_operand": 2
+              },
+              "continue_on_failure": false,
+              "display_name": "Global variable testing"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014WT0R7N4G297DTPk4jEbmqwbNJC2jgVLC",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WT7L0EA9O85KlEuJE0QYQOU6HNA5QM78",
+                "name": "Add Row to Table",
+                "title": "Add Row in Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Add Row in Table",
+                  "input_table": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$",
+                  "row": [
+                    {
+                      "key": "EmpID",
+                      "type": "integer",
+                      "value": 3
+                    },
+                    {
+                      "key": "EmpName",
+                      "type": "string"
+                    }
+                  ],
+                  "rows": {
+                    "all_rows": true,
+                    "rows_matching_criteria": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WT7OCNZPRW234hIj3myo4GCpO3NwCUC3",
+                "name": "Update Row in Table",
+                "title": "Update Row in Table",
+                "type": "core.updaterowintable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Update Row in Table",
+                  "input_table": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$",
+                  "row": [
+                    {
+                      "key": "EmpName",
+                      "type": "string",
+                      "value": "4"
+                    }
+                  ],
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "EmpID = 3"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WT7XEC2LGW5Bb1fOVeXiELjVFGx5NDRb",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "EmpID",
+                      "column_type": "integer"
+                    },
+                    {
+                      "column_name": "EmpName",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WT842H0WT54bJ0nfWwX4MpGppwcIpwV2",
+                "name": "Delete from Table",
+                "title": "Delete from Table",
+                "type": "core.deleterowfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Delete from Table",
+                  "input_table": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$",
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "EmpName=='4'"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WT8YP8P56E2HsdWTyhCN3sCFXkKKWejP",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.static.variable_workflow_014WSO36EEH583ceh3Kl9zdlISLIPflQNFz$",
+                      "variable_value_new": "$global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK.global.variable_014WSME64PVQ205h29tATCew7gOLdDc4myK$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014WRIPDFUCX24J2UEGnk0Xho25JAFzcNoa",
+            "name": "Condition Branch",
+            "title": "Activity table testing",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.input.variable_workflow_014WRGZFCZ78A1s9yV1BIprBYKEdN7djZcC$",
+                "operator": "eq",
+                "right_operand": 3
+              },
+              "continue_on_failure": false,
+              "display_name": "Activity table testing"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014XHGRD004AH0yisJZpuRaY4NzbdaUlkGh",
+                "name": "Read Table from XML",
+                "title": "Read Table from XML",
+                "type": "corejava.read_table_from_xml",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Table from XML",
+                  "input_xml": "\u003cxml\u003e\n  \u003crecord\u003e\n    \u003cname\u003eCicely\u003c/name\u003e\n    \u003cid\u003e1\u003c/id\u003e\n  \u003c/record\u003e\n  \u003crecord\u003e\n    \u003cname\u003eLily\u003c/name\u003e\n    \u003cid\u003e2\u003c/id\u003e\n  \u003c/record\u003e\n  \u003crecord\u003e\n    \u003cname\u003eBily\u003c/name\u003e\n    \u003cid\u003e3\u003c/id\u003e\n  \u003c/record\u003e\n\u003c/xml\u003e",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "integer",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "xmlpath_query": "//xml/record"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014XHIWGF030O6neI2KyNZddPDWaGHAGcgJ",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "integer"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$activity.definition_activity_014XHGRD004AH0yisJZpuRaY4NzbdaUlkGh.output.read_table_from_xml$",
+                  "number_of_rows": {
+                    "at_most": true,
+                    "first_n_rows": 2
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "column_name": "name",
+                    "order": "asc",
+                    "sort_by": true
+                  },
+                  "where_clause": "name=='Cicely' or id == 2"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014XHLD5W6VL32nNvn54sLKWPNIXDdaag2k",
+                "name": "Add Row to Table",
+                "title": "Add Row to Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Add Row to Table",
+                  "input_table": "$activity.definition_activity_014XHGRD004AH0yisJZpuRaY4NzbdaUlkGh.output.read_table_from_xml$",
+                  "row": [
+                    {
+                      "key": "name",
+                      "type": "string",
+                      "value": "Added"
+                    },
+                    {
+                      "key": "id",
+                      "type": "integer",
+                      "value": 4
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014XJOEZRF1LV5vM7kXLsJNrPifcufXbn2N",
+                "name": "Update Row in Table",
+                "title": "Update Row in Table",
+                "type": "core.updaterowintable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "integer"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Update Row in Table",
+                  "input_table": "$activity.definition_activity_014XHGRD004AH0yisJZpuRaY4NzbdaUlkGh.output.read_table_from_xml$",
+                  "row": [
+                    {
+                      "key": "name",
+                      "type": "string",
+                      "value": "name"
+                    },
+                    {
+                      "key": "id",
+                      "type": "integer",
+                      "value": 4
+                    }
+                  ],
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "id == 4"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014XHRD1X1PUV5dvJ0kHENSezLGXDfRRqlX",
+                "name": "Delete from Table",
+                "title": "Delete from Table",
+                "type": "core.deleterowfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Delete from Table",
+                  "input_table": "$activity.definition_activity_014XHGRD004AH0yisJZpuRaY4NzbdaUlkGh.output.read_table_from_xml$",
+                  "rows": {
+                    "rows_matching_criteria": true,
+                    "where_clause": "name=='Updated'"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014XJQHEED4BS2jzt65iWDr5lpsIRieZM6y",
+                "name": "Select from Table",
+                "title": "Select from Table",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "integer"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select from Table",
+                  "input_table": "$activity.definition_activity_014XHGRD004AH0yisJZpuRaY4NzbdaUlkGh.output.read_table_from_xml$",
+                  "number_of_rows": {
+                    "all_rows": true,
+                    "at_most": false
+                  },
+                  "persist_output": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_014XJVL547JQ104Q6EdIzxT3PPqXTaQCKck",
+        "name": "Read Table from Text",
+        "title": "Read Table from Text",
+        "type": "core.read_table_from_text",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "delimiters": [
+            {
+              "delimiter": ","
+            }
+          ],
+          "display_name": "Read Table from Text",
+          "input_text": "abcd,efg,hjk",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014XMC1M6AES35XxRsxu7oNrpUss8Rm4JeG",
+        "name": "Read Table from JSON",
+        "title": "Read Table from JSON",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Table from JSON",
+          "input_json": "[\n{\n  \"name\": \"Cicely\",\n  \"id\": 1\n},\n{\n  \"name\": \"Uly\",\n  \"id\": 3\n},\n{\n  \"name\": \"Lily\",\n  \"id\": 2\n}\n]",
+          "jsonpath_query": "$.*",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "id",
+              "column_type": "integer",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015107UDOW46K39xMLJmBe9In5BOxiyaqLr",
+        "name": "Execute Python Script",
+        "title": "Simple Python script",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Simple Python script",
+          "script": "import sys\n\ncalculate = 2+2\nprint(sys.argv[0])\nprint(sys.argv[1])",
+          "script_arguments": [
+            "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_01510C8KKFC6Q5AD6Iv76xaMxS2hv72VTVj$"
+          ],
+          "script_queries": [
+            {
+              "script_query": "calculate",
+              "script_query_name": "calculate",
+              "script_query_type": "integer"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01510FA7NU2FJ3srcRDBixyvDjBkbr1fYJ2",
+        "name": "Execute Python Script",
+        "title": "While Loop Python Script",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "While Loop Python Script",
+          "script": "a, b = 0, 1\nwhile a \u003c 1000:\n    print(a, end=',')\n    a, b = b, a+b",
+          "script_queries": [
+            {
+              "script_query": "a",
+              "script_query_name": "a",
+              "script_query_type": "integer"
+            },
+            {
+              "script_query": "b",
+              "script_query_name": "b",
+              "script_query_type": "integer"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01510G8H752D13tV5Jj6RkLGN0k0tandw3g",
+        "name": "Set Variables",
+        "title": "Set Python output variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Python output variables",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX.local.variable_workflow_01510GGECPZ8K2qwr4M8uux5ZQMT1JMCEn5$",
+              "variable_value_new": "$activity.definition_activity_01510FA7NU2FJ3srcRDBixyvDjBkbr1fYJ2.output.script_queries.a$+$activity.definition_activity_01510FA7NU2FJ3srcRDBixyvDjBkbr1fYJ2.output.script_queries.b$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "triggers": {
+    "triggerschedule_015114U4QNEDH2CTFdB4Cdyado5J94w0kwz": {
+      "workflow_id": "definition_workflow_014WRFSMHVFC07WICX12frUWciiCFLr2tRX",
+      "name": "Every 1 min trigger",
+      "title": "",
+      "lowercase_name": "schedule.every_1_min_trigger",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01510OSMNTSUX0EZPBD4YyaibpFEhqKz4ku",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_015114U4QNEDH2CTFdB4Cdyado5J94w0kwz",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_01510OSMNTSUX0EZPBD4YyaibpFEhqKz4ku": {
+      "unique_name": "schedule_01510OSMNTSUX0EZPBD4YyaibpFEhqKz4ku",
+      "name": "Every 1 Mins",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_datelist_01510NNEN1FR452w28cE1cgL6jFY7rZbICS",
+        "timezone": "US/Eastern",
+        "starttime": "16:49",
+        "interval_hours": 0,
+        "interval_minutes": 1,
+        "number_of_times": 10,
+        "display_name": "Every 1 Mins",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
+  "calendars": {
+    "calendar_datelist_01510NNEN1FR452w28cE1cgL6jFY7rZbICS": {
+      "unique_name": "calendar_datelist_01510NNEN1FR452w28cE1cgL6jFY7rZbICS",
+      "name": "Today Feb,12th",
+      "title": "Today Feb,12th",
+      "schema_id": "1BU8Xjcndu6MCk7aWmmENQFKFwP",
+      "base_type": "calendar",
+      "type": "calendar.datelist",
+      "properties": {
+        "date_list": [
+          "2019-02-12"
+        ]
+      },
+      "version": "1.0.0",
+      "object_type": "calendar_datelist"
+    }
+  },
+  "variables": {
+    "variable_014WSME64PVQ205h29tATCew7gOLdDc4myK": {
+      "unique_name": "variable_014WSME64PVQ205h29tATCew7gOLdDc4myK",
+      "schema_id": "tabletype_014WRWZBISCDK65pXKo0tcv63is6zo31VwA",
+      "properties": {
+        "value": [
+          {
+            "column_data": {
+              "EmpID": 1,
+              "EmpName": "Cicely"
+            }
+          }
+        ],
+        "scope": "global",
+        "name": "Cicely_Global_TestTable",
+        "type": "datatype.table"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_014WRWZBISCDK65pXKo0tcv63is6zo31VwA": {
+      "unique_name": "tabletype_014WRWZBISCDK65pXKo0tcv63is6zo31VwA",
+      "data_type": "datatype.tabletype",
+      "display_name": "Cicely Employee",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "EmpID",
+          "title": "Emp ID",
+          "type": "integer"
+        },
+        {
+          "name": "EmpName",
+          "title": "Emp Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
