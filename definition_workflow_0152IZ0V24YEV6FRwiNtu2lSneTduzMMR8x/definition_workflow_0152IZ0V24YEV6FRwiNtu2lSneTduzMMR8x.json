@@ -9,7 +9,7 @@
       {
         "schema_id": "datatype.number",
         "properties": {
-          "value": 0,
+          "value": 2,
           "scope": "input",
           "name": "My input var",
           "type": "datatype.number"
@@ -158,7 +158,7 @@
                         "properties": {
                           "continue_on_failure": false,
                           "display_name": "To Lower",
-                          "source": "C"
+                          "source": "D"
                         },
                         "object_type": "definition_activity"
                       }
@@ -226,7 +226,7 @@
     "variable_0152J0BFSIO9U639dIuY1FztewGlRWeCdjQ": {
       "unique_name": "variable_0152J0BFSIO9U639dIuY1FztewGlRWeCdjQ",
       "properties": {
-        "value": 5,
+        "value": 10,
         "scope": "global",
         "name": "JZ GL INT VAR",
         "type": "datatype.integer"
