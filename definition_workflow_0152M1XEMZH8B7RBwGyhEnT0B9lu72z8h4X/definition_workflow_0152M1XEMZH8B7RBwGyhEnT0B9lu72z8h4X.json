@@ -43,8 +43,7 @@
         "properties": {
           "action_timeout": 180,
           "arguments": [
-            "",
-            "$workflow.definition_workflow_0152M1XEMZH8B7RBwGyhEnT0B9lu72z8h4X.input.variable_workflow_0152M2IEASCH27KFypoJgbyvPZdqhsvbR0A$"
+            ""
           ],
           "continue_on_failure": true,
           "display_name": "Execute Linux/Unix SSH Script",
@@ -52,7 +51,7 @@
             "override_target_runtime_user": false,
             "target_default": true
           },
-          "script": "if ! [ -x \"$(command -v puppet)\" ]; then\n   curl -O https://raw.githubusercontent.com/petems/puppet-install-shell/master/install_puppet_5_agent.sh\nchmod 755 ./install_puppet_5_agent.sh\nsudo ./install_puppet_5_agent.sh || exit 2\nsource ~/.bashrc\nfi\npuppet apply $1",
+          "script": "if ! [ -x \"$(command -v puppet)\" ]; then\n   curl -O https://raw.githubusercontent.com/petems/puppet-install-shell/master/install_puppet_5_agent.sh\nchmod 755 ./install_puppet_5_agent.sh\nsudo ./install_puppet_5_agent.sh || exit 2\nsource ~/.bashrc\nfi\npuppet apply $workflow.definition_workflow_0152M1XEMZH8B7RBwGyhEnT0B9lu72z8h4X.input.variable_workflow_0152M2IEASCH27KFypoJgbyvPZdqhsvbR0A$",
           "target": {
             "override_workflow_target": false,
             "override_workflow_target_group_criteria": false,
