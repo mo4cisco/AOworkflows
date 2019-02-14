@@ -1,0 +1,569 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt",
+    "name": "XML  / JSON convertion   with multiple loops",
+    "title": "XML  / JSON convertion   with multiple loops",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "XML File",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_0152MUSEDGARX3Nam35n0poq2Aak7Fm1YAr",
+        "properties": {
+          "scope": "local",
+          "name": "LocalTable",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_0152MVAQ8WAM90wGLkYvyxEJA2gCR7V1s0b",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "seller_name",
+          "scope": "local",
+          "name": "Attribute_Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0152Q3DELZMSJ6oTXWUTqIDlJ2NZssZXIZJ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "XML  / JSON convertion   with multiple loops",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_0152NH1JC1J092uPhfUuNxFtb01JEsoLl6t",
+          "run_on_all_targets": true,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ]
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152JKPUIBPYX44vjoSpSvGpebdgzl05tJa",
+        "name": "Condition Block",
+        "title": "Condition Block  ( ALL BUGS  SELECTION OR SPECIFIC FILTER",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block  ( ALL BUGS  SELECTION OR SPECIFIC FILTER"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0152JKPW7JUCK1VKz0MeDbbm5ZoNZOUgGfb",
+            "name": "Condition Branch",
+            "title": "Condition Branch1",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt.input.variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97$",
+                "operator": "eqi",
+                "right_operand": "ebay"
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch1"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0152JTM56WXSX45YFqpRUfDkONyIXeFKPFb",
+                "name": "HTTP Request",
+                "title": "HTTP Request -condiion1",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "HTTP Request -condiion1",
+                  "method": "GET",
+                  "relative_url": "/xmltk/xmldata/data/auctions/$workflow.definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt.input.variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97$.xml",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target_group": true
+                  },
+                  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152L8S1I2AP27KnnK1jXCFB1mhNHFKaLcI",
+                "name": "Convert Xml to Json",
+                "title": "Convert Xml to Json condition1",
+                "type": "core.xml2json",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Convert Xml to Json condition1",
+                  "input_xml": "$activity.definition_activity_0152JTM56WXSX45YFqpRUfDkONyIXeFKPFb.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152LGGMY8R4T5Yeo3ZBYOPjEeWUo7srsSS",
+                "name": "Read Table from JSON",
+                "title": "Read Table from JSON   condition1",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Table from JSON   condition1",
+                  "input_json": "$activity.definition_activity_0152L8S1I2AP27KnnK1jXCFB1mhNHFKaLcI.output.output_json$",
+                  "jsonpath_query": "$..listing",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "payment_types",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152LJ0OGUU9S1TzpvzNncux64i1EKaxpx5",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "source_array": "$activity.definition_activity_0152LGGMY8R4T5Yeo3ZBYOPjEeWUo7srsSS.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0152NXWB1605G3l4CbJxjBAX9X0CSfHhy32",
+                    "name": "Find String",
+                    "title": "Find String   condition1",
+                    "type": "core.find_string",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Find String   condition1",
+                      "searched_string": "Visa",
+                      "source": "$activity.definition_activity_0152LJ0OGUU9S1TzpvzNncux64i1EKaxpx5.input.source_array[@].payment_types$"
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_0152O3L2ZS96K4OiNE7U8eTdP0pPIbNX2Ev",
+                    "name": "While Loop",
+                    "title": "While Loop",
+                    "type": "logic.while",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "While Loop"
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_0152O3L4VXZYV4tqWdQ7JgcgWtxSqqZCmFk",
+                        "name": "Condition Branch",
+                        "title": "Condition Branch",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_0152NXWB1605G3l4CbJxjBAX9X0CSfHhy32.output.has_match$",
+                            "operator": "ne",
+                            "right_operand": "true"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Condition Branch"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_0152O92YZ0M7L15neL9A51rIhsOehIbm2pk",
+                            "name": "Replace String",
+                            "title": "Replace String   condition1",
+                            "type": "core.replacestring",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Replace String   condition1",
+                              "input_string": "$activity.definition_activity_0152NXWB1605G3l4CbJxjBAX9X0CSfHhy32.output.has_match$",
+                              "replace_list": [
+                                {
+                                  "replaced_string": "true",
+                                  "replacement_string": "false"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_0152OVPI0Y9756HbKHXwBGwNguWmTtfn3SG",
+                            "name": "Completed",
+                            "title": "Completed",
+                            "type": "logic.completed",
+                            "base_type": "activity",
+                            "properties": {
+                              "completion_type": "succeeded",
+                              "display_name": "Completed"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0152JKPWX1HZJ0whrx1VdBKdLB7xMTgV3df",
+            "name": "Condition Branch",
+            "title": "Condition Branch2",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt.input.variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97$",
+                "operator": "eq",
+                "right_operand": "yahoo"
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch2"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0152M16JP524L3rTq5lnpaoGvIXU3q8tXfF",
+                "name": "HTTP Request",
+                "title": "HTTP Request -condition2",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "HTTP Request -condition2",
+                  "method": "GET",
+                  "relative_url": "/xmltk/xmldata/data/auctions/$workflow.definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt.input.variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97$.xml",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target_group": true
+                  },
+                  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152M1DOFQBYP5iSFjL9LufaOtEjjYr6LDw",
+                "name": "Convert Xml to Json",
+                "title": "Convert Xml to Json   condition2",
+                "type": "core.xml2json",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Convert Xml to Json   condition2",
+                  "input_xml": "$activity.definition_activity_0152M16JP524L3rTq5lnpaoGvIXU3q8tXfF.output.response_body$$activity.definition_activity_0152M16JP524L3rTq5lnpaoGvIXU3q8tXfF.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152M4E1VC5OV7W8xdjEcgw4CdJEVrBzFRG",
+                "name": "Read Table from JSON",
+                "title": "Read Table from JSON  condition2",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Table from JSON  condition2",
+                  "input_json": "$activity.definition_activity_0152M1DOFQBYP5iSFjL9LufaOtEjjYr6LDw.output.output_json$",
+                  "jsonpath_query": "$..listing",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "seller_info",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152P8P7LVFNL0ua2mOLv8jKmoiexnRcJKJ",
+                "name": "Convert Json to Xml",
+                "title": "Convert Json to Xml   condition2",
+                "type": "core.json2xml",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Convert Json to Xml   condition2",
+                  "input_json": "$activity.definition_activity_0152M4E1VC5OV7W8xdjEcgw4CdJEVrBzFRG.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152PXRFGI0ZV67be7PyzUkHqHoRjxxRnOi",
+                "name": "Read Table from XML",
+                "title": "Read Table from XML  condition2",
+                "type": "corejava.read_table_from_xml",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Table from XML  condition2",
+                  "input_xml": "$activity.definition_activity_0152P8P7LVFNL0ua2mOLv8jKmoiexnRcJKJ.output.output_xml$",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "seller_name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "xmlpath_query": "$global.variable_0152Q1PTYB9072I0pPWYCqWDGZtnCsgW1G1.global.variable_0152Q1PTYB9072I0pPWYCqWDGZtnCsgW1G1$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0152QZZETBLTP4ygkxMAeS45eAv7RVQtFiA",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "source_array": "$activity.definition_activity_0152PXRFGI0ZV67be7PyzUkHqHoRjxxRnOi.output.read_table_from_xml$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0152R0BG7KME52I5i8ekwvsvMzx51z3i2Dv",
+                    "name": "Basic Child Workflow   condition2",
+                    "title": "Basic Child Workflow   condition2",
+                    "type": "workflow.sub_workflow",
+                    "base_type": "subworkflow",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Basic Child Workflow   condition2",
+                      "input": {
+                        "variable_workflow_0152QZ1NVPNLF3OapcLnx2mZ7KWfklhRjZT": "$activity.definition_activity_0152QZZETBLTP4ygkxMAeS45eAv7RVQtFiA.input.source_array[@].seller_name$"
+                      },
+                      "target": {
+                        "execute_on_this_target": false,
+                        "execute_on_this_target_group": false,
+                        "no_target": false,
+                        "override_workflow_target": false,
+                        "override_workflow_target_group_criteria": false,
+                        "use_workflow_target": false,
+                        "use_workflow_target_group": false
+                      },
+                      "workflow_id": "definition_workflow_0152QXNTPX01G6MV9YM19DdmHmGoOQexwNF"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "triggers": {
+    "triggerschedule_0152Q6JUZ19BU4tXjKNp46HTk6yBOFHhtGt": {
+      "workflow_id": "definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt",
+      "name": "Trigger",
+      "title": "",
+      "lowercase_name": "schedule.trigger",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_0152Q5TYJ93RZ2aEnjVizo9UsrlNjCpfHfF",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_0152Q6JUZ19BU4tXjKNp46HTk6yBOFHhtGt",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_0152Q5TYJ93RZ2aEnjVizo9UsrlNjCpfHfF": {
+      "unique_name": "schedule_0152Q5TYJ93RZ2aEnjVizo9UsrlNjCpfHfF",
+      "name": "Daily R Scheduler",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "US/Pacific",
+        "starttime": "13:45",
+        "interval_hours": 0,
+        "interval_minutes": 0,
+        "number_of_times": 1,
+        "display_name": "Daily R Scheduler",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
+  "target_groups": {
+    "target_group_0152NH1JC1J092uPhfUuNxFtb01JEsoLl6t": {
+      "unique_name": "target_group_0152NH1JC1J092uPhfUuNxFtb01JEsoLl6t",
+      "name": "XML source target",
+      "title": "XML source target",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": false,
+          "criteria": [
+            {
+              "left_operand": "$input.display_name$",
+              "operator": "eqi",
+              "right_operand": "BIg XML HTTP source"
+            }
+          ]
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "variables": {
+    "variable_0152Q1PTYB9072I0pPWYCqWDGZtnCsgW1G1": {
+      "unique_name": "variable_0152Q1PTYB9072I0pPWYCqWDGZtnCsgW1G1",
+      "properties": {
+        "value": "/root/object/seller_info",
+        "scope": "global",
+        "name": "XMLPATH",
+        "type": "datatype.string"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_0152MUSEDGARX3Nam35n0poq2Aak7Fm1YAr": {
+      "unique_name": "tabletype_0152MUSEDGARX3Nam35n0poq2Aak7Fm1YAr",
+      "data_type": "datatype.tabletype",
+      "display_name": "RusalnGllobalTableType",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "maxLength": 60,
+          "name": "ID",
+          "title": "ID",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_0152QXNTPX01G6MV9YM19DdmHmGoOQexwNF",
+        "name": "Basic Child Workflow",
+        "title": "Basic Child Workflow",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "inputString",
+              "type": "datatype.string"
+            },
+            "unique_name": "variable_workflow_0152QZ1NVPNLF3OapcLnx2mZ7KWfklhRjZT",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "Basic Child Workflow",
+          "favorite": false,
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": true,
+            "specify_on_workflow_start": false
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0152QYE8NV1L77g2LZ5PhUbnRS7lnMGnC7C",
+            "name": "To Upper",
+            "title": "To Upper",
+            "type": "core.string2upper",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "To Upper",
+              "source": "$workflow.definition_workflow_0152QXNTPX01G6MV9YM19DdmHmGoOQexwNF.input.variable_workflow_0152QZ1NVPNLF3OapcLnx2mZ7KWfklhRjZT$ + test"
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    }
+  ]
+}
