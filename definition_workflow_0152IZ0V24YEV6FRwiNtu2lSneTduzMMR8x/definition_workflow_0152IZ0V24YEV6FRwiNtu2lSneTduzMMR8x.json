@@ -222,6 +222,41 @@
       "object_type": "category"
     }
   },
+  "triggers": {
+    "triggerschedule_0152JSNR8SRG256w85lIh25FmmeFt0z0fHs": {
+      "workflow_id": "definition_workflow_0152IZ0V24YEV6FRwiNtu2lSneTduzMMR8x",
+      "name": "3 times workdays",
+      "title": "",
+      "lowercase_name": "schedule.3_times_workdays",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_0152JRZ3YHGIG47tHnvm4O0r3ZIuBWZi6qE",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_0152JSNR8SRG256w85lIh25FmmeFt0z0fHs",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_0152JRZ3YHGIG47tHnvm4O0r3ZIuBWZi6qE": {
+      "unique_name": "schedule_0152JRZ3YHGIG47tHnvm4O0r3ZIuBWZi6qE",
+      "name": "JZ 3 Times Workdays Daily",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_group_1BMfN6Cjp6x5yy0NdCh9PJC9KGo",
+        "timezone": "America/Chicago",
+        "starttime": "10:30",
+        "interval_hours": 0,
+        "interval_minutes": 1,
+        "number_of_times": 3,
+        "display_name": "JZ 3 Times Workdays Daily",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
   "variables": {
     "variable_0152J0BFSIO9U639dIuY1FztewGlRWeCdjQ": {
       "unique_name": "variable_0152J0BFSIO9U639dIuY1FztewGlRWeCdjQ",
