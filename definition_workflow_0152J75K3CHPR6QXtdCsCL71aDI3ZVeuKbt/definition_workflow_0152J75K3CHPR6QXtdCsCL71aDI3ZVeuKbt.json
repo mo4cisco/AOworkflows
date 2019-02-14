@@ -9,7 +9,7 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
+          "value": "ebay or yahoo",
           "scope": "input",
           "name": "XML File",
           "type": "datatype.string"
@@ -91,7 +91,7 @@
               {
                 "unique_name": "definition_activity_0152JTM56WXSX45YFqpRUfDkONyIXeFKPFb",
                 "name": "HTTP Request",
-                "title": "HTTP Request -condiion1",
+                "title": "HTTP Request GET XML from web -condiion1",
                 "type": "web-service.http_request",
                 "base_type": "activity",
                 "properties": {
@@ -100,7 +100,7 @@
                   "allow_auto_redirect": true,
                   "continue_on_error_status_code": false,
                   "continue_on_failure": false,
-                  "display_name": "HTTP Request -condiion1",
+                  "display_name": "HTTP Request GET XML from web -condiion1",
                   "method": "GET",
                   "relative_url": "/xmltk/xmldata/data/auctions/$workflow.definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt.input.variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97$.xml",
                   "runtime_user": {
@@ -268,7 +268,7 @@
               {
                 "unique_name": "definition_activity_0152M16JP524L3rTq5lnpaoGvIXU3q8tXfF",
                 "name": "HTTP Request",
-                "title": "HTTP Request -condition2",
+                "title": "HTTP Request GET XML from web -condition2",
                 "type": "web-service.http_request",
                 "base_type": "activity",
                 "properties": {
@@ -277,7 +277,7 @@
                   "allow_auto_redirect": true,
                   "continue_on_error_status_code": false,
                   "continue_on_failure": false,
-                  "display_name": "HTTP Request -condition2",
+                  "display_name": "HTTP Request GET XML from web -condition2",
                   "method": "GET",
                   "relative_url": "/xmltk/xmldata/data/auctions/$workflow.definition_workflow_0152J75K3CHPR6QXtdCsCL71aDI3ZVeuKbt.input.variable_workflow_0152JGK4CQ3TA7DLprGo35QSOx3UuK65E97$.xml",
                   "runtime_user": {
@@ -413,8 +413,19 @@
       }
     ],
     "categories": [
-      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+      "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa"
     ]
+  },
+  "categories": {
+    "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa": {
+      "unique_name": "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa",
+      "name": "Other",
+      "title": "Other",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
   },
   "triggers": {
     "triggerschedule_0152Q6JUZ19BU4tXjKNp46HTk6yBOFHhtGt": {
