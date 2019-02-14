@@ -1,0 +1,65 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152QMAJBLRZO5CTEXIICuXCe95aMFfDO5Z",
+    "name": "Chef Apply",
+    "title": "Chef Apply",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "chef-apply command args",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0152QZOBFIJ726sEvbP0Jj5lAIO7u80mORq",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "chef",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Chef Apply",
+      "favorite": false,
+      "target": {
+        "target_type": "terminal.unix_linux_endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152R04O1XMO72ExgZQcoFb5PcXFwG0GvjQ",
+        "name": "Execute Linux/Unix SSH Script",
+        "title": "Execute Linux/Unix SSH Script",
+        "type": "terminal.ssh_script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Execute Linux/Unix SSH Script",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "script": "if ! [ -x \"$(command -v chef-apply)\" ]; then\n  echo \"Installing Chef\\n\\n\"\n  curl –L https://www.opscode.com/chef/install.sh | sudo bash\n  source ~/.bashrc\nfi\nsudo chef-apply $workflow.definition_workflow_0152QMAJBLRZO5CTEXIICuXCe95aMFfDO5Z.input.variable_workflow_0152QZOBFIJ726sEvbP0Jj5lAIO7u80mORq$",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
