@@ -1,0 +1,44 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152MXC1Z3GNS0Zyu5u4i4SMgGUTwmsZh7N",
+    "name": "Worker",
+    "title": "Worker",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Worker",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152MXKT9PTIL0DqZSMX3WDBys0BcbkVPu8",
+        "name": "Execute Python Script",
+        "title": "Execute Python Script",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Execute Python Script",
+          "script": "from random import random\nif random()\u003e0.9:\n  raise ValueError('test message')"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
