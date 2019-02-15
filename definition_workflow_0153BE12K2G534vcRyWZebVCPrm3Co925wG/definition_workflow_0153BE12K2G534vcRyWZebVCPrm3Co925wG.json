@@ -1,0 +1,133 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0153BE12K2G534vcRyWZebVCPrm3Co925wG",
+    "name": "Notifier",
+    "title": "Notifier",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Notifier",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0153BFC9W4T2R27b6bJrFimYr5thGzHrXsp",
+        "name": "Send Email",
+        "title": "Send Email",
+        "type": "email.smtp_send_email",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "body": "$trigger.triggerevent_0153BF7IYRW8E7Nene479nd4CBPyvUWUML5.output.message$",
+          "continue_on_failure": false,
+          "display_name": "Send Email",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "subject": "failed workflows",
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_0152OZGTGUBC52eLa4ah4KPUbObUzPADzbh"
+          },
+          "to": "tshakhmu@cisco.com"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "triggers": {
+    "triggerevent_0153BF7IYRW8E7Nene479nd4CBPyvUWUML5": {
+      "workflow_id": "definition_workflow_0153BE12K2G534vcRyWZebVCPrm3Co925wG",
+      "name": "kafka watcher",
+      "title": "",
+      "lowercase_name": "event.kafka_watcher",
+      "type": "event",
+      "base_type": "trigger",
+      "ref_id": "event_0153BESSZYWU76LaO3BtRW6SBCoZWaGWBkP",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerevent_0153BF7IYRW8E7Nene479nd4CBPyvUWUML5",
+      "object_type": "triggerevent"
+    }
+  },
+  "events": {
+    "event_0153BESSZYWU76LaO3BtRW6SBCoZWaGWBkP": {
+      "name": "Kafka failed watcher",
+      "title": "Kafka failed watcher",
+      "type": "kafka.event",
+      "base_type": "event",
+      "object_type": "event",
+      "target_id": "definition_target_0152NFI29SMS21c1vS4HKDZ2tLYmYUj4cKZ",
+      "version": "1.0.0",
+      "properties": {
+        "target_id": "definition_target_0152NFI29SMS21c1vS4HKDZ2tLYmYUj4cKZ",
+        "title": "Kafka failed watcher",
+        "topic_name": "notify_failed_wf"
+      },
+      "unique_name": "event_0153BESSZYWU76LaO3BtRW6SBCoZWaGWBkP"
+    }
+  },
+  "targets": {
+    "definition_target_0152NFI29SMS21c1vS4HKDZ2tLYmYUj4cKZ": {
+      "unique_name": "definition_target_0152NFI29SMS21c1vS4HKDZ2tLYmYUj4cKZ",
+      "name": "Internal kafka",
+      "title": "Internal kafka",
+      "type": "kafka.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "test",
+        "disable_certificate_validation": true,
+        "display_name": "Internal kafka",
+        "host": "pers-kafka.cisco",
+        "no_runtime_user": true,
+        "port": 9092,
+        "ssl_enable": false
+      }
+    },
+    "definition_target_0152OZGTGUBC52eLa4ah4KPUbObUzPADzbh": {
+      "unique_name": "definition_target_0152OZGTGUBC52eLa4ah4KPUbObUzPADzbh",
+      "name": "SM-email-target",
+      "title": "SM-email-target",
+      "type": "email.smtp_endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_0152OMIUAR1JC3c1BBWhEilXX0vd7nXNnir",
+        "display_name": "SM-email-target",
+        "port": 465,
+        "protocol": "SMTP",
+        "server": "smtp.gmail.com"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_0152OMIUAR1JC3c1BBWhEilXX0vd7nXNnir": {
+      "unique_name": "definition_runtime_user_0152OMIUAR1JC3c1BBWhEilXX0vd7nXNnir",
+      "name": "SM-email-cred",
+      "title": "SM-email-cred",
+      "type": "runtime_user.email_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "SM-email-cred"
+      }
+    }
+  }
+}
