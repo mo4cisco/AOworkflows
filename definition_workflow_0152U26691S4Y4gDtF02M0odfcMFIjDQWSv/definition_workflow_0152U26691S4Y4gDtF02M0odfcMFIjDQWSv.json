@@ -1,0 +1,652 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152U26691S4Y4gDtF02M0odfcMFIjDQWSv",
+    "name": "FINAL-RC-TEST-BUILD --- Murali",
+    "title": "FINAL-RC-TEST-BUILD --- Murali",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 2,
+          "scope": "input",
+          "name": "V1",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_0152UYZV60JQ63z5v4rDOrvmSAfF4EJN7LC",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "FINAL-RC-TEST-BUILD --- Murali",
+      "favorite": true,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152UQVHA12ME1uXJYdM3rXd1PaciyajKKA",
+        "name": "Generic GCP API Request",
+        "title": "Generic GCP API",
+        "type": "gcp.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "api_url": "https://www.googleapis.com/compute/v1/projects/longhorn-186314/zones/us-central1-a/instances",
+          "continue_on_failure": false,
+          "display_name": "Generic GCP API",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_0152UE7VDH9LW46ARcydLmb9imy2JhPFJUc"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152UQ5DV5WQH1VQyC1ok2DQH9f36hIdW21",
+        "name": "List Zones",
+        "title": "List Zones",
+        "type": "gcp.list_zones",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "List Zones",
+          "project_id": "longhorn-186314",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_0152UE7VDH9LW46ARcydLmb9imy2JhPFJUc"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152USVFDFSHK0JNRhsICvqQmP5rWKJRNTh",
+        "name": "RK-GCP-Actions-Test",
+        "title": "RK-GCP-Actions-Test",
+        "type": "workflow.sub_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "RK-GCP-Actions-Test",
+          "input": {},
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_0152UE7VDH9LW46ARcydLmb9imy2JhPFJUc",
+            "target_type": "015272KI4WU6B6BtVPaC7pwIpoPOvozFqmj"
+          },
+          "workflow_id": "definition_workflow_0152P7CX01GHJ09FzIFm9CkaWLf1pM9W3W9"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152UMIRFNMIE04AHLPRg7MpGkwrSr23Vxp",
+        "name": "Meraki-Atomic1",
+        "title": "Meraki-Atomic1",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Meraki-Atomic1",
+          "input": {
+            "variable_workflow_0152U7XWY8JPH50hjNx3aHDNncXxd7vn0PW": "EASgsegsdg"
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "01528U3K28I8P1x14yWDPLoQV6hszANCIZv",
+            "target_type": "015272LWLBX1M6cwWTj5mEbSdvB1bj8uejQ"
+          },
+          "workflow_id": "definition_workflow_0152U51WNKUN10M0UoxPjRcuxF7ImMbjtli"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152U2YPF66MC1s9Leh8Qljq38PcRUt6fxw",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request",
+          "relative_url": "/be-console/api/v1/variables",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152U42Y73G0H591QhA4L4z8t3lQEcbVtGQ",
+        "name": "Split String",
+        "title": "Split String",
+        "type": "core.splitstring",
+        "base_type": "activity",
+        "properties": {
+          "boundaries": [
+            {
+              "boundary": ","
+            }
+          ],
+          "continue_on_failure": false,
+          "display_name": "Split String",
+          "input_string": "a,b,c"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152U4IEL3WU67FUqTHaGuMI4MXGL3qILDo",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_0152U42Y73G0H591QhA4L4z8t3lQEcbVtGQ.output.parts$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0152U4QOJLKOD1TVDDcmnLDmX895yDItx2a",
+            "name": "To Upper",
+            "title": "To Upper",
+            "type": "core.string2upper",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "To Upper",
+              "source": "$activity.definition_activity_0152U4IEL3WU67FUqTHaGuMI4MXGL3qILDo.input.source_array[@]$"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0152UYLPTPGVW15QykKvTRqAibIwbwlHbiR",
+            "name": "While Loop",
+            "title": "While Loop",
+            "type": "logic.while",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "While Loop"
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_0152UYLSPTM9W1uc26ydFwxv1GHB9ri8pzA",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$workflow.definition_workflow_0152U26691S4Y4gDtF02M0odfcMFIjDQWSv.input.variable_workflow_0152UYZV60JQ63z5v4rDOrvmSAfF4EJN7LC$",
+                    "operator": "eq",
+                    "right_operand": 2
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Condition Branch"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0152UYOJIY4LR3gLzdptjg4mOlftIGg5W56",
+                    "name": "Break",
+                    "title": "Break",
+                    "type": "logic.break",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Break"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0152UIW9KF4KD6b4pNGNtQRAz3gnhnT1wEj",
+        "name": "Basic-Test-SW",
+        "title": "Basic-Test-SW",
+        "type": "workflow.sub_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Basic-Test-SW",
+          "input": {},
+          "target": {
+            "no_target": true,
+            "override_workflow_target": false
+          },
+          "workflow_id": "definition_workflow_0152O9V71WWYZ5cjzm8KxZ9Xjcae0jQ5TFZ"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "categories": {
+    "category_0152IZOWDN0886UyfyC1Zjl8WAOjfDwkcF0": {
+      "unique_name": "category_0152IZOWDN0886UyfyC1Zjl8WAOjfDwkcF0",
+      "name": "Networking",
+      "title": "Networking",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa": {
+      "unique_name": "category_0152J1BFE4ZM52cv1IHZrCqOYPbRu8GpkAa",
+      "name": "Other",
+      "title": "Other",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_0152UE7VDH9LW46ARcydLmb9imy2JhPFJUc": {
+      "unique_name": "definition_target_0152UE7VDH9LW46ARcydLmb9imy2JhPFJUc",
+      "name": "GCP-Murali",
+      "title": "GCP-Murali",
+      "type": "gcp.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_0152UCSING1ZC2WVTv1Gi9nBKP2jjxZbzOs",
+        "display_name": "GCP-Murali",
+        "host": "www.googleapis.com",
+        "protocol": "https",
+        "scope": "/auth/cloud-platform"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_0152UCSING1ZC2WVTv1Gi9nBKP2jjxZbzOs": {
+      "unique_name": "definition_runtime_user_0152UCSING1ZC2WVTv1Gi9nBKP2jjxZbzOs",
+      "name": "GCP-Murali-Key",
+      "title": "GCP-Murali-Key",
+      "type": "runtime_user.gcp_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "GCP-Murali-Key"
+      }
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_0152P7CX01GHJ09FzIFm9CkaWLf1pM9W3W9",
+        "name": "RK-GCP-Actions-Test",
+        "title": "RK-GCP-Actions-Test",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "longhorn-186314",
+              "scope": "local",
+              "name": "GCP-Project",
+              "type": "datatype.string"
+            },
+            "unique_name": "variable_workflow_0152PARB6EPXM1zYUfuaSqtRfulOoX7GcwR",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "RK-GCP-Actions-Test",
+          "favorite": false,
+          "target": {
+            "target_type": "gcp.endpoint",
+            "target_id": "definition_target_0152UE7VDH9LW46ARcydLmb9imy2JhPFJUc",
+            "execute_on_workflow_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0152SWRFIH5834UMRr069enhrNfut6bKWjO",
+            "name": "List Zones",
+            "title": "List Zones",
+            "type": "gcp.list_zones",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "List Zones",
+              "project_id": "$workflow.definition_workflow_0152P7CX01GHJ09FzIFm9CkaWLf1pM9W3W9.local.variable_workflow_0152PARB6EPXM1zYUfuaSqtRfulOoX7GcwR$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0152SVJBZLJXD08KfWmnTQ1chO0WvNKDYMf",
+            "name": "Get Project Details",
+            "title": "Get Project Details",
+            "type": "gcp.get_project_details",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Get Project Details",
+              "project_id": "$workflow.definition_workflow_0152P7CX01GHJ09FzIFm9CkaWLf1pM9W3W9.local.variable_workflow_0152PARB6EPXM1zYUfuaSqtRfulOoX7GcwR$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": true,
+                "use_workflow_target_group": false
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0152PEXC3IAQH1cgnEBHUQUD6jjlmvxLmkF",
+            "name": "List Instance Templates",
+            "title": "List Instance Templates",
+            "type": "gcp.list_instance_templates",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "List Instance Templates",
+              "project_id": "$workflow.definition_workflow_0152P7CX01GHJ09FzIFm9CkaWLf1pM9W3W9.local.variable_workflow_0152PARB6EPXM1zYUfuaSqtRfulOoX7GcwR$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0152PCW0TB86W3P2COBgPFuJd2y9rfv7MBE",
+            "name": "List Firewall Rules",
+            "title": "List Firewall Rules",
+            "type": "gcp.list_firewall_rules",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "List Firewall Rules",
+              "project_id": "$workflow.definition_workflow_0152P7CX01GHJ09FzIFm9CkaWLf1pM9W3W9.local.variable_workflow_0152PARB6EPXM1zYUfuaSqtRfulOoX7GcwR$",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      }
+    },
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_0152O9V71WWYZ5cjzm8KxZ9Xjcae0jQ5TFZ",
+        "name": "Basic-Test-SW",
+        "title": "Basic-Test-SW",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": null,
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "Basic-Test-SW",
+          "favorite": false,
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": true,
+            "specify_on_workflow_start": false
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0152OA54AZ6LV00WiSU0ZwfwL6s4bAQandU",
+            "name": "BasicTest-Workflow",
+            "title": "Sub Workflow",
+            "type": "workflow.sub_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "BasicTest-Workflow",
+              "target": {
+                "execute_on_this_target": false,
+                "execute_on_this_target_group": false,
+                "no_target": false,
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": false,
+                "use_workflow_target_group": false
+              },
+              "workflow_id": "definition_workflow_01527N1VNPT5N2mkzVGNJ1fKtHjGiQJTyfi"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0152RHX8RREXX6pPLngMxuc2oErpSyknm47",
+            "name": "Test-Atomic",
+            "title": "Test-Atomic",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Test-Atomic",
+              "input": {
+                "variable_workflow_0152RIQXWRITQ7P5sexLDiXxcmCOSWoNjFq": "hhhhgjfdgshdjghjhklj;k"
+              },
+              "target": {
+                "execute_on_this_target": false,
+                "execute_on_this_target_group": false,
+                "no_target": false,
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": false,
+                "use_workflow_target_group": false
+              },
+              "workflow_id": "definition_workflow_0152KPM53BFG06Zr9wt8apWa2ZW8WWbJ7kI"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0152RK3Q51XVP2jLEmRMA9qsiP5WG5tp0jV",
+            "name": "Test-Atomic",
+            "title": "Test-Atomic",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Test-Atomic",
+              "input": {
+                "variable_workflow_0152RIQXWRITQ7P5sexLDiXxcmCOSWoNjFq": "fsgdffsgsds"
+              },
+              "target": {
+                "execute_on_this_target": false,
+                "execute_on_this_target_group": false,
+                "no_target": false,
+                "override_workflow_target": false,
+                "override_workflow_target_group_criteria": false,
+                "use_workflow_target": false,
+                "use_workflow_target_group": false
+              },
+              "workflow_id": "definition_workflow_0152KPM53BFG06Zr9wt8apWa2ZW8WWbJ7kI"
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
+      },
+      "subworkflows": [
+        {
+          "workflow": {
+            "unique_name": "definition_workflow_01527N1VNPT5N2mkzVGNJ1fKtHjGiQJTyfi",
+            "name": "BasicTest-Workflow",
+            "title": "BasicTest-Workflow",
+            "type": "generic.workflow",
+            "base_type": "workflow",
+            "variables": null,
+            "properties": {
+              "atomic": {
+                "is_atomic": false
+              },
+              "delete_workflow_instance": false,
+              "display_name": "BasicTest-Workflow",
+              "favorite": false,
+              "target": {
+                "execute_on_target_group": false,
+                "execute_on_workflow_target": false,
+                "no_target": true,
+                "specify_on_workflow_start": false
+              }
+            },
+            "object_type": "definition_workflow",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01527N5B8A4KE6GyjBEC7Vh958uXZoyouNC",
+                "name": "Split String",
+                "title": "Split String",
+                "type": "core.splitstring",
+                "base_type": "activity",
+                "properties": {
+                  "boundaries": [
+                    {
+                      "boundary": ","
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Split String",
+                  "input_string": "a,b,c"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01527NELMZELN2lO3XRZqnG2cpG71VpmBRI",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "source_array": "$activity.definition_activity_01527N5B8A4KE6GyjBEC7Vh958uXZoyouNC.output.parts$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01527NLD7H9WG0rJSnZRDAXKmisbnPvsgIJ",
+                    "name": "To Upper",
+                    "title": "To Upper",
+                    "type": "core.string2upper",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "To Upper",
+                      "source": "$activity.definition_activity_01527NELMZELN2lO3XRZqnG2cpG71VpmBRI.input.source_array[@]$"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01527O3SAJQE23YbAxpVDbSQMotxoTL81Js",
+                "name": "Generic CCS API Request",
+                "title": "Generic CCS API Request",
+                "type": "ccs.api_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "api_call_method": "GET",
+                  "continue_on_failure": false,
+                  "display_name": "Generic CCS API Request",
+                  "relative_url": "/be-console/api/v1/variables",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ],
+            "categories": [
+              "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "atomic_workflows": [
+    "definition_workflow_0152U51WNKUN10M0UoxPjRcuxF7ImMbjtli",
+    "definition_workflow_0152KPM53BFG06Zr9wt8apWa2ZW8WWbJ7kI",
+    "definition_workflow_0152KPM53BFG06Zr9wt8apWa2ZW8WWbJ7kI"
+  ]
+}
