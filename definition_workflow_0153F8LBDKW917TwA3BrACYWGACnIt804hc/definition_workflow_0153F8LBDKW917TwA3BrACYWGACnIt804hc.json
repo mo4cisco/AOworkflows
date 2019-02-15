@@ -1,0 +1,218 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0153F8LBDKW917TwA3BrACYWGACnIt804hc",
+    "name": "WF TableTypes",
+    "title": "WF TableTypes",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01g1JoKOU1D2JOkgPpEka6XtgCDjkuV0k",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "Dec": 1,
+                "number": 1,
+                "string": "1"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 2,
+                "number": 2,
+                "string": "2"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 3,
+                "number": 3,
+                "string": "3"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 4,
+                "number": 4,
+                "string": "4"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 5,
+                "number": 5,
+                "string": "5"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 6,
+                "number": 6,
+                "string": "6"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 7,
+                "number": 7,
+                "string": "7"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 8,
+                "number": 8,
+                "string": "8"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 9,
+                "number": 9,
+                "string": "9"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 10,
+                "number": 10,
+                "string": "10"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 11,
+                "number": 11,
+                "string": "11"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 12,
+                "number": 12,
+                "string": "12"
+              }
+            },
+            {
+              "column_data": {
+                "Dec": 13,
+                "number": 13,
+                "string": "13"
+              }
+            }
+          ],
+          "scope": "local",
+          "name": "Local table varaible",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_0153FEUX9D9RS0tT4ed61KgTvfM3fHwkCfr",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "WF TableTypes",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0153FAYBS7MAT0zEgwOoIdXPT3TBTYG3thB",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$workflow.definition_workflow_0153F8LBDKW917TwA3BrACYWGACnIt804hc.local.variable_workflow_0153FEUX9D9RS0tT4ed61KgTvfM3fHwkCfr$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0153F944JGIGE1Ip8STggcsbexFRWfKhGDs",
+            "name": "Generic CCS API Request",
+            "title": "Generic CCS API Request",
+            "type": "ccs.api_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "api_body": "{\n  \"columns\": [\n    {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Id\",\n      \"title\": \"Id\",\n      \"maxLength\": 100\n    },\n    {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"schema Id\",\n      \"title\": \"Schema Id\",\n      \"maxLength\": 100\n    },\n    {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Adapter Id\",\n      \"title\": \"Adapter Id\",\n      \"maxLength\": 100\n    },\n     {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Name\",\n      \"title\": \"Name\",\n      \"maxLength\": 100\n    },\n     {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Type\",\n      \"title\": \"Type\",\n      \"maxLength\": 100\n    },\n    {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Base_type\",\n      \"title\": \"Base_type\",\n      \"maxLength\": 100\n    },\n    {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Valid\",\n      \"title\": \"valid\",\n      \"maxLength\": 100\n    },\n      {\n      \"_page\": 1,\n      \"is_required\": false,\n      \"type\": \"string\",\n      \"name\": \"Owner\",\n      \"title\": \"Owner\",\n      \"maxLength\": 100\n    }\n  ],\n  \"display_name\": \"TTError\"\n}",
+              "api_call_method": "GET",
+              "continue_on_failure": false,
+              "display_name": "Generic CCS API Request",
+              "relative_url": "/be-console/api/v1/table_types",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0153FF143UVFU316sY4gM8ZyLgyKpS2TeLU",
+            "name": "Sleep",
+            "title": "Sleep",
+            "type": "core.sleep",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Sleep",
+              "sleep_interval": 50
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01g1JoKOU1D2JOkgPpEka6XtgCDjkuV0k": {
+      "unique_name": "tabletype_01g1JoKOU1D2JOkgPpEka6XtgCDjkuV0k",
+      "data_type": "datatype.tabletype",
+      "display_name": "RG table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Dec",
+          "title": "number",
+          "type": "number"
+        },
+        {
+          "is_required": true,
+          "name": "number",
+          "title": "number",
+          "type": "integer"
+        },
+        {
+          "is_required": true,
+          "name": "string",
+          "title": "string",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
