@@ -10,16 +10,6 @@
         "schema_id": "datatype.secure_string",
         "properties": {
           "scope": "local",
-          "name": "username",
-          "type": "datatype.secure_string"
-        },
-        "unique_name": "variable_workflow_0152LAYMVNJL80OAmCIcKQDjViIgKmUFqJP",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "scope": "local",
           "name": "password",
           "type": "datatype.secure_string"
         },
@@ -35,6 +25,16 @@
           "type": "datatype.string"
         },
         "unique_name": "variable_workflow_0152NC0NA359R4HPnICyI8pLS5CZXMqbMRy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "local",
+          "name": "username",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0152LAYMVNJL80OAmCIcKQDjViIgKmUFqJP",
         "object_type": "variable_workflow"
       }
     ],
@@ -228,25 +228,6 @@
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_0152N5OGTNB5W4zpQyXK3BmP3WgiHViLlln",
-        "name": "Replace String",
-        "title": "Fix datetime format",
-        "type": "core.replacestring",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Fix datetime format",
-          "input_string": "$activity.definition_activity_0152MZPG8Z13L0ATHk5hz9Sp2lqWAjIJYgz.output.response_body$",
-          "replace_list": [
-            {
-              "replaced_string": "Z\"",
-              "replacement_string": "Z07:00\""
-            }
-          ]
-        },
-        "object_type": "definition_activity"
-      },
-      {
         "unique_name": "definition_activity_0152N4OP7UY1I0hMaoEYDcbsJV0NPWSilyg",
         "name": "Read Table from JSON",
         "title": "Read wf instances into table",
@@ -256,7 +237,7 @@
           "action_timeout": 180,
           "continue_on_failure": false,
           "display_name": "Read wf instances into table",
-          "input_json": "$activity.definition_activity_0152N5OGTNB5W4zpQyXK3BmP3WgiHViLlln.output.result_string$",
+          "input_json": "$activity.definition_activity_0152MZPG8Z13L0ATHk5hz9Sp2lqWAjIJYgz.output.response_body$",
           "jsonpath_query": "$.",
           "persist_output": true,
           "populate_columns": false,
@@ -337,7 +318,7 @@
               "condition": {
                 "left_operand": "$activity.definition_activity_0152N70A6UK7S59VpS1MWBWIJzYj215RNdM.output.row_count$",
                 "operator": "gt",
-                "right_operand": "1"
+                "right_operand": 0
               },
               "continue_on_failure": false,
               "display_name": "If we have failed"
@@ -482,7 +463,7 @@
     "variable_0152N8DNCFWAM3yvJWwMeuTpg1swfkkOUr0": {
       "unique_name": "variable_0152N8DNCFWAM3yvJWwMeuTpg1swfkkOUr0",
       "properties": {
-        "value": "2017-07-24T15:39:03-07:00",
+        "value": "2019-02-14T19:02:14Z",
         "scope": "global",
         "name": "Last failed",
         "type": "datatype.date"
