@@ -1,0 +1,132 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0153I91JPQLF47Dyjy5FG9yKbpRbGGMIGf1",
+    "name": "Generate Large Table",
+    "title": "Generate Large Table",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_0153IESGDHQ2E1cPQlBQax4YPXQKRi8KDqz",
+        "properties": {
+          "scope": "output",
+          "name": "Output Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_0153IEWX4NK275AKk30B0kiiwWGW4wJm85a",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Generate Large Table",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_0152JWRE3U22L0MKpAJKP0kCqxxttlqhqhm",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0153I9F932JLQ4mAuFgAeslyIyfu3As0Y1q",
+        "name": "HTTP Request",
+        "title": "HTTP Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "HTTP Request",
+          "method": "GET",
+          "relative_url": "/repos/facebook/react/commits",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0153ICX23KFKY0YRoz98Hhy17IE6wjzs1Gq",
+        "name": "Read Table from JSON",
+        "title": "Read Table from JSON",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Table from JSON",
+          "input_json": "$activity.definition_activity_0153I9F932JLQ4mAuFgAeslyIyfu3As0Y1q.output.response_body$",
+          "jsonpath_query": "$",
+          "persist_output": false,
+          "populate_columns": true
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0153IEZLOHK9L57apNoOibCXPlEGuckcpP5",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0153I91JPQLF47Dyjy5FG9yKbpRbGGMIGf1.output.variable_workflow_0153IEWX4NK275AKk30B0kiiwWGW4wJm85a$",
+              "variable_value_new": "$activity.definition_activity_0153ICX23KFKY0YRoz98Hhy17IE6wjzs1Gq.output.read_table_from_json$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_0152JWRE3U22L0MKpAJKP0kCqxxttlqhqhm": {
+      "unique_name": "definition_target_0152JWRE3U22L0MKpAJKP0kCqxxttlqhqhm",
+      "name": "Kevin Github",
+      "title": "Kevin Github",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Kevin Github",
+        "host": "api.github.com",
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "table_types": {
+    "tabletype_0153IESGDHQ2E1cPQlBQax4YPXQKRi8KDqz": {
+      "unique_name": "tabletype_0153IESGDHQ2E1cPQlBQax4YPXQKRi8KDqz",
+      "data_type": "datatype.tabletype",
+      "display_name": "Empty Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
