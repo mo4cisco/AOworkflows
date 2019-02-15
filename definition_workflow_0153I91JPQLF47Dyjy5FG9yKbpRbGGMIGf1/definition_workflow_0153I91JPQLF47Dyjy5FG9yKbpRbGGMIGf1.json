@@ -5,18 +5,7 @@
     "title": "Generate Large Table",
     "type": "generic.workflow",
     "base_type": "workflow",
-    "variables": [
-      {
-        "schema_id": "tabletype_0153IESGDHQ2E1cPQlBQax4YPXQKRi8KDqz",
-        "properties": {
-          "scope": "output",
-          "name": "Output Table",
-          "type": "datatype.table"
-        },
-        "unique_name": "variable_workflow_0153IEWX4NK275AKk30B0kiiwWGW4wJm85a",
-        "object_type": "variable_workflow"
-      }
-    ],
+    "variables": null,
     "properties": {
       "atomic": {
         "is_atomic": false
@@ -75,24 +64,6 @@
           "populate_columns": true
         },
         "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_0153IEZLOHK9L57apNoOibCXPlEGuckcpP5",
-        "name": "Set Variables",
-        "title": "Set Variables",
-        "type": "core.set_multiple_variables",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Set Variables",
-          "variables_to_update": [
-            {
-              "variable_to_update": "$workflow.definition_workflow_0153I91JPQLF47Dyjy5FG9yKbpRbGGMIGf1.output.variable_workflow_0153IEWX4NK275AKk30B0kiiwWGW4wJm85a$",
-              "variable_value_new": "$activity.definition_activity_0153ICX23KFKY0YRoz98Hhy17IE6wjzs1Gq.output.read_table_from_json$"
-            }
-          ]
-        },
-        "object_type": "definition_activity"
       }
     ],
     "categories": [
@@ -114,19 +85,6 @@
         "no_runtime_user": true,
         "protocol": "https"
       }
-    }
-  },
-  "table_types": {
-    "tabletype_0153IESGDHQ2E1cPQlBQax4YPXQKRi8KDqz": {
-      "unique_name": "tabletype_0153IESGDHQ2E1cPQlBQax4YPXQKRi8KDqz",
-      "data_type": "datatype.tabletype",
-      "display_name": "Empty Table",
-      "max_rows": 256,
-      "max_columns": 256,
-      "max_column_size": 1024,
-      "max_table_size": 26000,
-      "base_type": "datatype",
-      "object_type": "tabletype"
     }
   }
 }
