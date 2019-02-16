@@ -11,39 +11,6 @@
         "properties": {
           "value": "",
           "scope": "input",
-          "name": "Action Type",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "Suite Internal Target",
-          "scope": "input",
-          "name": "Target Name",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "null",
-          "scope": "input",
-          "name": "CC_RUN_ID",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
           "name": "Script",
           "type": "datatype.string"
         },
@@ -91,6 +58,39 @@
           "type": "datatype.integer"
         },
         "unique_name": "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Suite Internal Target",
+          "scope": "input",
+          "name": "Target Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01grKo0w9ERN4QuKLJ3qgU5yoPCsn8CgI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "CC_RUN_ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gmdByUB9aPy15xbtjYiwCkddwX9OXBD",
         "object_type": "variable_workflow"
       }
     ],
